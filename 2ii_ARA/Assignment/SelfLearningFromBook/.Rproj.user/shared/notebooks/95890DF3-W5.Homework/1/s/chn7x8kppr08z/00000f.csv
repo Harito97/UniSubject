@@ -1,0 +1,7 @@
+"0","set.seed(1)"
+"0","y = rnorm(100)"
+"0","x = rnorm(100)"
+"0","e = rnorm(100, 0, 0.01)"
+"0","# Tạo lại giá trị cho y cho phụ thuộc vào x"
+"0","y = x -2*x^2 + e"
+"0","# Mô hình ở đây là y = x -2*x^2 + error"

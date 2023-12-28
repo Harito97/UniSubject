@@ -1,0 +1,424 @@
+{
+	"info": {
+		"_postman_id": "217f4e31-7f12-4dba-8c2e-4860a3155244",
+		"name": "21002139_buoi3",
+		"description": "Dưới đây là 15 API để thực hiện các phương thức GET, POST, PUT, DELETE dữ liệu của 4 bảng trong cơ sở dữ liệu. Chú ý không có API PUT cho CHUNGNHAN - bảng chỉ có 2 thuộc tính và cả 2 là khóa chính.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30510702"
+	},
+	"item": [
+		{
+			"name": "GET maybay func",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/get_maybays",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"get_maybays"
+					]
+				},
+				"description": "Trả về danh sách các bản ghi trong bảng MAYBAY."
+			},
+			"response": []
+		},
+		{
+			"name": "GET nhanvien func",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/get_nhanviens",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"get_nhanviens"
+					]
+				},
+				"description": "Trả về danh sách các bản ghi trong bảng NHANVIEN."
+			},
+			"response": []
+		},
+		{
+			"name": "GET chungnhan func",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/get_chungnhans",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"get_chungnhans"
+					]
+				},
+				"description": "Trả về danh sách các bản ghi trong bảng CHUNGNHAN."
+			},
+			"response": []
+		},
+		{
+			"name": "GET chuyenbay func",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/get_chuyenbays",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"get_chuyenbays"
+					]
+				},
+				"description": "Trả về các bản ghi trong bảng CHUYENBAY."
+			},
+			"response": []
+		},
+		{
+			"name": "POST maybay func",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n  \"MaMB\": 3, \n  \"Loai\": \"Airbus A300\", \n  \"TamBay\": 200000\n} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/post_maybay",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"post_maybay"
+					]
+				},
+				"description": "Thêm bản ghi vào bảng MAYBAY. Data kèm theo request là file JSON có cấu trúc như ví dụ bên dưới."
+			},
+			"response": []
+		},
+		{
+			"name": "POST nhanvien func",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"MaNV\": \"NV001\",\n  \"Ten\": \"haihieu\",\n  \"Luong\": 9000000\n} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/post_nhanvien",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"post_nhanvien"
+					]
+				},
+				"description": "Thêm bản ghi vào bảng NHANVIEN. Data kèm theo request là file JSON có cấu trúc như ví dụ bên dưới."
+			},
+			"response": []
+		},
+		{
+			"name": "POST chungnhan func",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"MaNV\": \"NV000\",\n  \"MaMB\": 2\n} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/post_chungnhan",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"post_chungnhan"
+					]
+				},
+				"description": "Thêm bản ghi vào bảng CHUNGNHAN. Data kèm theo request là file JSON có cấu trúc như ví dụ bên dưới."
+			},
+			"response": []
+		},
+		{
+			"name": "POST chuyenbay func",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"MaCB\": \"CB008\",\n    \"GaDi\": \"Tokyo\",\n    \"GaDen\": \"Hanoi\",\n    \"DoDai\": 10000,\n    \"GioDi\": \"2023-10-22T10:00:00\",\n    \"GioDen\": \"2023-10-22T12:00:00\",\n    \"ChiPhi\": 1000\n} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/post_chuyenbay",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"post_chuyenbay"
+					]
+				},
+				"description": "Thêm bản ghi vào bảng CHUYENBAY. Data kèm theo request là file JSON có cấu trúc như ví dụ bên dưới."
+			},
+			"response": []
+		},
+		{
+			"name": "PUT maybay func",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n  \"MaMB\": 3, \n  \"Loai\": \"Airbus A300\", \n  \"TamBay\": 200000\n} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/update_maybay",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"update_maybay"
+					]
+				},
+				"description": "Thay đổi máy bay có MaMB như đầu vào của file JSON. Ví dụ file JSON có cấu trúc như bên dưới."
+			},
+			"response": []
+		},
+		{
+			"name": "PUT chuyenbay func",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"MaCB\": \"CB002\",\n    \"GaDi\": \"Tokyo\",\n    \"GaDen\": \"Shanghai\",\n    \"DoDai\": 10000,\n    \"GioDi\": \"2023-10-22T10:00:00\",\n    \"GioDen\": \"2023-10-22T12:00:00\",\n    \"ChiPhi\": 1000\n} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/update_chuyenbay",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"update_chuyenbay"
+					]
+				},
+				"description": "Thay đổi chuyến bay có MaCB như đầu vào của file JSON. Ví dụ file JSON có cấu trúc như bên dưới."
+			},
+			"response": []
+		},
+		{
+			"name": "PUT nhanvien func",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n  \"MaNV\": \"NV001\",\n  \"Ten\": \"haihieu\",\n  \"Luong\": 10000000\n} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/update_nhanvien",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"update_nhanvien"
+					]
+				},
+				"description": "Thay đổi nhân viên có MaNV như đầu vào của file JSON. Ví dụ file JSON có cấu trúc như bên dưới."
+			},
+			"response": []
+		},
+		{
+			"name": "DEL  maybay func",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/delete_maybay/3",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"delete_maybay",
+						"3"
+					]
+				},
+				"description": "Xóa bản ghi có thông tin tham số đính kèm đường dẫn:\n\n[http://127.0.0.1:8000/delete_maybay/{](http://127.0.0.1:8000/delete_chungnhan/NV001/3)MaMB}"
+			},
+			"response": []
+		},
+		{
+			"name": "DEL  chungnhan func",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/delete_chungnhan/NV001/3",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"delete_chungnhan",
+						"NV001",
+						"3"
+					]
+				},
+				"description": "Xóa bản ghi có thông tin tham số đính kèm đường dẫn:\n\n[http://127.0.0.1:8000/delete_chungnhan/{](http://127.0.0.1:8000/delete_chungnhan/NV001/3)MaNV}/{MaMB}"
+			},
+			"response": []
+		},
+		{
+			"name": "DEL  nhanvien func",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/delete_nhanvien/3",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"delete_nhanvien",
+						"3"
+					]
+				},
+				"description": "Xóa bản ghi có thông tin tham số đính kèm đường dẫn:\n\n[http://127.0.0.1:8000/delete_nhanvien/{](http://127.0.0.1:8000/delete_chungnhan/NV001/3)MaNV}"
+			},
+			"response": []
+		},
+		{
+			"name": "DEL  chuyenbay func",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/delete_chuyenbay/CB001",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"delete_chuyenbay",
+						"CB001"
+					]
+				},
+				"description": "Xóa bản ghi có thông tin tham số đính kèm đường dẫn:\n\n[http://127.0.0.1:8000/delete_chuyenbay/{](http://127.0.0.1:8000/delete_chungnhan/NV001/3)MaCB}"
+			},
+			"response": []
+		}
+	]
+}

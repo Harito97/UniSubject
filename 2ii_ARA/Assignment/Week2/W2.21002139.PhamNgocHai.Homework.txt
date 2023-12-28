@@ -1,0 +1,75 @@
+#BAI 1.
+data = read.csv("D:\\University\\RegressionAnalysisAndApplications\\Assignment\\Week2\\Australian Institute of Sport.csv",
+                header = TRUE)
+data = na.omit(data)
+View(data)
+attach(data)
+#a.
+#Viết phương trình đường thẳng hồi quy tuyến tính của BMI theo Wt.
+lm1 = lm(data$BMI ~ data$Wt)
+lm1
+#BMI =   9.906   +     0.174  * Wt
+
+#b.
+#Phần dư có phân bố chuẩn với giá trị trung bình bằng 0 không?
+e = lm1$residuals
+shapiro.test(e) 
+#H0: e theo pp chuan | H1: e khong theo pp chuan
+# Vi p-value = 0.0229 < 0.05 -> Bac bo H0 -> e khong theo pp chuan voi myn = 5%
+
+#t.test(e, mu = 0) #neu e tuan theo pp chuan#
+#H0: E[e] = 0 | H1: E[e] != 0
+# Vi p-value = 1 > 0.05 -> Chap nhan H0 -> E[e] = 0 voi myn = 5% (neu e tuan theo pp chuan)
+
+#KL: Vay phan du khong phan bo chuan voi gia tri trung binh = 0
+
+#c.
+#Tìm khoảng tin cậy 90% cho các hệ số hồi quy.
+confint(lm1, level = 0.8)
+#               10 %     90 %
+#  data$Wt 0.2988589 0.304473
+
+#d.
+#Các hệ số hồi quy có thực sự khác 0 không? 
+# Nếu tồn tại hệ số hồi quy bằng 0, 
+# xác định lại ước lượng của các hệ số trong mô hình hồi quy tuyến tính mới.
+lm1 = lm(data$BMI ~ data$Wt)
+summary(lm1)
+#Pthq dang: BMI = a_0 + a_1 * Wt
+
+#Bai toan kiem dinh cho a_0
+# H0: a_0 = 0 | H1: a_0 != 0
+#p-value: < 2.2e-16 < 0.05 -> Bac bo H0: 
+#KL: Vay voi myn = 5% thi a_0 != 0
+
+#Uoc luong lai mo hinh (#trong truong hop neu co he so = 0#)
+lm1 = lm(data$BMI ~ data$Wt + 0)
+lm1
+
+################################################################################
+#BAI 2.
+x = rnorm(1000, 158, sqrt(25))
+y = rnorm(1000, 59, sqrt(9))
+#a.
+#Ptrinh hoi quy tuyen tinh cua x theo y
+lmxy = lm(x~y)
+lmxy
+#x = 156.07704 + 0.03197 * y 
+
+#b.
+#Phần dư có phân bố chuẩn với giá trị trung bình bằng 0 không?
+e = lmxy$residuals
+shapiro.test(e)
+#H0: E[e] = 0 | H1: E[e] != 0
+#p-value = 0.1919 > 0.05 => chap nhan H0
+#KL: Vay vs myn = 5% thi E[e] = 0
+
+#c.
+#Với Y = 57.5, đưa ra dự đoán về giá trị của X 
+#và khoảng tin cậy 95% cho giá trị trung bình của X.
+predict(lmxy, data.frame(y=(c(57.5))),
+        interval ="confidence", level = 0.9)
+#Voi Y = 57.5 thi X trung binh uoc luong la 157.9151
+#Khoang tin cay 95% la (157.6247, 158.2056)
+#   fit      lwr      upr
+#1 157.9151 157.6247 158.2056

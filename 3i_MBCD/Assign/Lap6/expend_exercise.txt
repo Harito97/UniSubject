@@ -1,0 +1,64 @@
+## Đề bài: Tạo 2 topic. Mỗi topic đọc vào 1 video. Rồi dùng consumer show video ra
+## -------------------------------------------------------------------------------
+
+## Tạo 2 topic. Mỗi topic nhận vào 1 video
+harito@harito-neon:/usr/local/kafka$ bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic videoTopic1
+harito@harito-neon:/usr/local/kafka$ bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic videoTopic2
+
+## Mỗi topic có 1 producer nhận vào 1 video
+harito@harito-neon:/usr/local/kafka$ bin/kafka-console-producer.sh --broker-list localhost:9092 --topic videoTopic1 --producer-property value.serializer=org.apache.kafka.common.serialization.ByteArraySerializer < /home/harito/Documents/VideoDemo.mkv 
+harito@harito-neon:/usr/local/kafka$ bin/kafka-console-producer.sh --broker-list localhost:9092 --topic videoTopic2 --producer-property value.serializer=org.apache.kafka.common.serialization.ByteArraySerializer < /home/harito/Documents/simplescreenrecorder-2023-11-05_20.45.30.mkv
+
+## Tạo consumer hiện ra video ở từng topic
+# Xem video từ videoTopic1
+harito@harito-neon:/usr/local/kafka$ bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic videoTopic1 --from-beginning
+&Up݇CF�X�:�tS�E�Z�k�.��r`S��/�>i��B���va��l�r&�#�B�t3�9�
+                                                       ]f���2|;���=�
+����A����d�1��������:��\�e:�i� �X;*?�T���͟�]�@�M}�4�
+
+��@��
+     u��I�,]#��Ѝ�����mL�e�X0,V�%r$J�����x�I_қ�6�TO��_�����������lv�ּ"��N�<w(��
+                                                                             �庋�.u(ޚ�����0�1Qķ�J`s
+�����D�sP𦽵��ϥ~���SB~��]L�A[�#~d���I�CS�9O��A���!�y     U9@����w�?`ǰ�V��y�k���0�Y�G��VW▒P�/▒�Y4��_ϴ������aX\Y����>yyI"U�V����I-U00h5��*&
+                          T�(� u���s�Zzv�5
+                                          a��-Ӎ�����ȷ���
+
+ʮ;
+  ����+�▒reb\=�Z�1hR���������T%kpG�
+                                   ev   ���;��w�M�j_��\���Ҙ��̈́�u���H����r3���a�+?�-u�2�1�S��Eɷ�W�f�%��k�9
+                                                                                                        ����y�1+Q��K�|�FP2��1������Ɉ�{{��=Ex�~��a��2��"�nw�-�XݩJҏ��$k$�BIׄ
+                                                           L�lw˟��+��#��r���PX▒A��m�O�wb��h�Π�!�gwމ�n �,�▒�����n2�o�,��Y�S�!��BfU�C>B,^B�~�0��x��k�!XF1S�z��o�ay��(
+                                                     ��� (��µ2��.M����Ϗ0�iV,g��*�rn��9�.'j�H�ET[�k����t '%
+��#(c��o{���"��5&8�w����Mq�����-�&��s�(,!��)�z@���tX|�=*�(=���m���%����a��<^̾��-.)�W��_.3
+��} C TiG�A���QM,�:�+_V)�9�Ξ?
+Q�Z4��/|�8#Y��|�k�𥮴VS�▒+�Ľi�l'�J"���:4����0��ڼ�}�f.
+�d��+�6ֲb��_C�_�lp�����S�렗�    ��/D0���EŔWp���nNyc&k�����xÀ'����=���=Cd�� wo%��
+                                                                               �Z▒�?#q��X���qe�Ix���^��K�ɇ�o%Z��/�<�7RTB�eaݸ�ꮜ�׎��▒,��XRJJ�bآ��)
+LjEM?�URwX2�B'3����M
+$�dA�V�G�q�!�8N�̠�e7^#���,��FK��s�%&���z���a��ٳ�'\�*���u
+
+# Xem video từ videoTopic2
+harito@harito-neon:/usr/local/kafka$ bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic videoTopic2 --from-beginning
+                                  �\h��SZ/�:��`���8�ۣ��
+                                                      TeB`50�G+n�M:I�����▒,�$�Q���{Cʻ�kU6�▒+▒fk_3[�?jy�����A�U��f�v�Yp7��Us:����JMP�8��^cHD�H�\������a�ݐ��
+�� �@agr���[�mK+�h
+                  H�у^▒�hI%���sv��A��L�1��*��}�ѫ����-m�.���S<Z^sO��[
+��a>k�?�B��ۙ�o��SK]��(�sQ�f/kQ(�j�u|�Ma�o��4��&����o�{6����o��▒y
+                                                               �A
+ld�#��#[�<��R�
+Iw��*
+�<�m:�wpGi��5�(�},�ɟx4��g�Q�����o�W6U�!�����
+1�|
+   G�(�k���j�)���8Ǜ�S��▒}_uY�P�W�L��K`@�������yX=Éwp�"���a��$��Nsx_�u��צ�������F�0�v�
+v@��\W�?Ћ6eQ�W>Γ'J�*�����.�39A}}j��l"�P���!�dҚaI��XRk�[xZչX��
+җ=h���jT-�鷠            �UW�9������ �9��\�u▒�7�,��X|r�s�Yf�M�Z;1��x�
+                                                        L�aM�A��▒3T���lܗ��@���25;��%t�Cek5d.��de�Ghv����T���Rm�
+ ���^��'%z�r_I����$Q��_{W�Q�2�G�_��>4��켘�|�[
+z�_�8@f�*O�T�(D�a�ѩu0��F=�ٯey6צ�hz▒7�5�vh��GK��o,S�Cv�ۈ:���/���e�l�#��ʞ��jG             �
+                                                                                         a�n�B���몹+▒�?�S�#iUBM�a����SlA��K��x���q�����#���c�.N-.�x�����D�+�҇'��`ꥫ��Z�����;�
+▒A���JPMH���ϛ�w�
+                �@�Y�0����C���A�޶�`l�h�7Q�֔dJ�BEUD��Q�   ��+�7��sċe�▒#�A�
+
+                                                                        ��j���
+�nӛ��f�.�S
+          քS��C�l�Cࢲi%<p�       cg�ي#'_WN�9f��~�3r�#������.52���i�vS,S;g�^Y6�����$�*f�zE�fR�*��!�{���▒h�F    ����P�Λ����kve�����Ej=Y�4�f�z8�|��`^Ź���m�r�����

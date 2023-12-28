@@ -1,0 +1,84 @@
+THỰC HÀNH HỒI QUY TUYẾN TÍNH ĐA BIẾN
+
+Sử dụng bộ dữ liệu Boston trong gói lệnh MASS bao gồm 14 biến liên quan đến giá trị nhà ở vùng ngoại ô ở Boston và hàm step, phân tích hồi quy bội của biến medv (giá nhà trung bình – đơn vị: nghìn $) theo các biến còn lại.
+______________________________________________________________________________________________________________________________________________________________________________________________________________________________
+Cấp nguồn data
+{r}
+# installed.packages("MASS")
+library("MASS")
+attach(Boston)
+
+a) Đưa ra mô hình hồi quy tuyến tính "forward" và " backward" tốt nhất.
+- Use forward:
+
+{r}
+only = lm(medv ~ 1, data = Boston)
+all = lm(medv ~ ., data = Boston) 
+forward = step(only, scope = formula(all), direction = "forward", trace = 0)
+summary(forward)
+{r}
+forward$coefficients
+
+Mô hình tốt nhất thu được theo forward là:
+medv = 36.341145004 -0.522553457lstat + 3.801578840rm -0.946524570ptratio -1.492711460dis -17.376023429nox + 2.718716303chas + 0.009290845black + 0.045844929zn -0.108413345crim + 0.299608454rad -0.011777973*tax
+(đây là các hệ số được xấp xỉ do đã làm tròn để dễ thể hiện)
+
+- Use backward:
+{r}
+only = lm(medv ~ 1, data = Boston)
+all = lm(medv ~ ., data = Boston) 
+backward = step(all, scope = formula(only), direction = "backward", trace = 0)
+summary(backward)
+
+Mô hình tốt nhất thu được theo forward là:
+backward$coefficients
+(Intercept)          crim            zn          chas           nox            rm           dis           rad 
+ 36.341145004  -0.108413345   0.045844929   2.718716303 -17.376023429   3.801578840  -1.492711460   0.299608454 
+          tax       ptratio         black         lstat 
+ -0.011777973  -0.946524570   0.009290845  -0.522553457 
+
+b) Khi phân tích "forward", nếu biến medv được biểu diễn theo hai biến thì đó là những biến nào?
+
+{r}
+forward$anova
+# Lấy lstat và rm (vì 2 biến đầu tiên phù hợp nhất của mô hình)
+# Viết ra mô hình phụ thuộc 2 biến
+newModel = lm(medv ~ lstat + rm, data = Boston)
+summary(newModel)
+
+Kiểm định xem các hệ số của mô hình newModel có thể bằng 0 hay không?
+# Kiểm định
+# H0: các hệ số a0, a1, a2 bằng 0 | H1: a0 or a1 or a2 khác 0
+# Do Pr(>|t|) = 0.669 > 0.05 => Với ý nghĩa 5% thì chấp nhận H0: a0 = 0
+# Với a1, a2 thì Pr(>|t|) < 0.05 => Với ý nghĩa 5% thì bác bỏ H0, hay a1, a2 khác 0 
+# Xây dựng lại mô hình
+{r}
+# Vì kiểm định thấy chấp nhận H0 -> có hệ số tự do bằng 0
+# Xây dựng lại mô hình
+newModel = lm(medv ~ lstat + rm + 0, data = Boston)
+summary(newModel)
+newModel$coefficients
+# Mô hình 2 biến sau cùng thu được là medv = -0.655740*lstat + 4.906906*rm 
+
+c) Khi phân tích "backward", kiểm định xem các hệ số trong mô hình hồi quy tuyến tính thu được có thực sự khác 0 không? Phần dư có tuân theo phân phối chuẩn với giá trị trung bình bằng 0 không?
+
+{r}
+# Kiểm định các hệ số có bằng 0 hay k?
+# H0: Các hệ số bằng 0 | H1: Các hệ số khác 0
+summary(backward)
+backward$anova
+# các Pr(>|t|) đếu *** or ** (tức <0.05) => với ý nghĩa 5% thì các hệ số của các biến đều khác 0 (bác bỏ H0)
+
+{r}
+# Kiểm định phần dư có theo phân phối chuẩn hay không?
+# H0: residuals theo phân phối chuẩn | H1: residuals không theo phân phối chuẩn
+shapiro.test(backward$residuals)
+# p-value <2.2e-16 < 0.05 -> Bác bỏ H0 -> residuals không theo phân phối chuẩn với mức ý nghĩa 5%
+
+{r}
+# Kiểm định giá trị trung bình của phần dư có = 0 hay không?
+# Vì phần dư không theo phân phối chuẩn nên ta sử dụng hàm wilcox.test()
+# H0: E[residuals] = 0 | H1: E[residuals] != 0
+wilcox.test(backward$residuals)
+# p-value = 0.008285 < 0.05 => Với mức ý nghĩa 5% thì bác bỏ H0 hay giá trị trung bình của phần dư khác 0
+

@@ -1,0 +1,6 @@
+"0","which.min(reg.summary$rss)"
+"1","[1]"
+"1"," 19"
+"1","
+"
+"0","points(11,reg.summary$rss[11], col= ""red"",cex=2,pch =20)"

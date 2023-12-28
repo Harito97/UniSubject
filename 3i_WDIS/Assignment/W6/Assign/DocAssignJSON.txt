@@ -1,0 +1,5 @@
+Go to  ../json-data/{data_table} 
+Output in screen: json data of data_table
+
+Go to ../export-json/{data_table}
+Output: a json file contain data from data_table

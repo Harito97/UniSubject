@@ -1,0 +1,68 @@
+# Bài tập tuần 5
+
+## Bài 8 (trang 200)
+
+a)  Generate a simulated data set as follows:
+
+```{r}
+set.seed(1)
+y = rnorm(100)
+x = rnorm(100)
+e = rnorm(100, 0, 0.01)
+# Tạo lại giá trị cho y cho phụ thuộc vào x
+y = x -2*x^2 + e
+# Mô hình ở đây là y = x -2*x^2 + error
+```
+
+Số quan sát n = 100
+
+Số biến p = 2 (x và y)
+
+Mô hình ở đây khi khởi tạo như trên là: y = x -2\*x\^2 + error
+
+b)  Create a scatterplot of X against Y . Comment on what you find.
+
+```{r}
+# plot(x, y, main = "scatterplot")
+plot(x, y)
+# Nhận xét ở đây là dựa vào đồ thì y là 1 hàm bậc 2 của x
+```
+
+c)  Set a random seed, and then compute the LOOCV errors that result from fifitting the following four models using least squares:
+
+```{r}
+# Khởi tạo data
+set.seed(1)
+data = data.frame(y, x)
+data
+```
+
+```{r}
+library(boot)
+cv.error = rep(0,4)
+# tạo ra 1 vector cv.error để lưu giá trị 5 phần tử dùng sau này
+for (i in 1:4){
+  glm.fit=glm(y~poly(x,i),data=data)
+  cv.error[i]=cv.glm(data,glm.fit)$delta[1]
+}
+cv.error
+plot(cv.error, type = "l", ylim = c(-1,6))
+# Nhận xét là sử dụng mô hình 2 biến cho ra kết quả sai số MSE thấp nhất
+```
+
+d)  Repeat (c) using another random seed, and report your results. Are your results the same as what you got in (c)? Why?
+
+```{r}
+set.seed(3)
+#y = rnorm(100)
+#x = rnorm(100)
+#e = rnorm(100, 0, 0.01)
+# Tạo lại giá trị cho y cho phụ thuộc vào x
+#y = x -2*x^2 + e
+cv.error.4 = rep(0,4)
+for (i in 1:4) {
+  glm1 = glm(y ~ poly(x, i))
+  cv.error.4[i] = cv.glm(data.frame(x,y), glm1)$delta[1]
+}
+cv.error.4
+```

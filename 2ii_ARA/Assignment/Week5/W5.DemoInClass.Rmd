@@ -1,0 +1,154 @@
+# **Thực hành lap trang 191**
+
+##  I. The Validation Set Approach
+
+```{r}
+# đề có thể có đọc data từ file excel
+#install.packages("ISLR")
+library(ISLR)
+set.seed(1)
+#?sample
+train = sample(392, 196)
+train
+# sinh ra 196 giá trị trong khoảng 1:392
+dim(Auto)
+Auto
+```
+
+```{r}
+lm.fit = lm(mpg~horsepower, data = Auto, subset = train)
+# Phân tích hồi quy tuyến tính trên tập con của Auto gồm các giá trị tại quan sats thứ i (i thuộc tập train)
+attach(Auto)
+MSE = mean((mpg - predict(lm.fit,Auto))[-train ]^2)
+# E{(y - y_h)^2} tính trên tập dữ liệu test = Auto \ Auto[train]
+MSE
+```
+
+## II. Leave-One-Out Cross-Validation
+
+```{r}
+glm.fit = glm(mpg~horsepower,data=Auto)
+coef(glm.fit)
+```
+
+```{r}
+lm.fit=lm(mpg~horsepower,data=Auto)
+coef(lm.fit)
+#Dùng glm hay lm đều ra cùng 1 kết quả hệ số
+```
+
+```{r}
+library(boot)
+glm.fit=glm(mpg~horsepower,data=Auto)
+#mpg = a0 + a1*horsepower
+cv.err=cv.glm(Auto,glm.fit)
+cv.err$delta
+```
+
+```{r}
+cv.error=rep(0,5)
+# tạo ra 1 vector cv.error để lưu giá trị 5 phần tử dùng sau này
+for (i in 1:5){
+  glm.fit=glm(mpg~poly(horsepower,i),data=Auto)
+  cv.error[i]=cv.glm(Auto,glm.fit)$delta [1]
+}
+cv.error
+# nhận xét kết quả của vector cv.error là sai số MSE của mô hình bậc 1:5
+# khi tăng bậc 1 đến 2 (2 biến) -> sai số giảm
+# tăng bậc 2 đến 4 -> sai số tăng
+# tăng bậc đến 5 thì sai số là min
+plot(cv.error, type = "l", ylim = c(10, 25))
+```
+
+## III. k-Fold Cross-Validation
+
+```{r}
+set.seed(17)
+cv.error.10=rep(0 ,10)
+for (i in 1:10){
+  glm.fit=glm(mpg~poly(horsepower,i),data=Auto)
+  cv.error.10[i]=cv.glm(Auto,glm.fit,K=10)$delta[1]
+}
+cv.error.10
+```
+
+```{r}
+plot(cv.error.10, type = "l", ylim = c(18, 25))
+```
+
+## IV. The Bootstrap
+
+### 1. Tìm hiều về tập data
+
+```{r}
+# Tìm hiểu về data
+# Có 2 loại tài sản X, Y.
+# Đầu từ alpha vào X và 1 - alpha vào Y
+# Bài toán tìm alpha để tối thiểu rủi ro khi đầu tư vào 2 loại tài sản
+?Portfolio
+plot(Portfolio$X,Portfolio$Y)
+```
+
+### 2. Build hàm tính alpha cần tìm
+
+```{r}
+alpha.fn = function(data,index){
+  X=data$X[index]
+  Y=data$Y[index]
+  return ((var(Y)-cov(X,Y))/(var(X)+var(Y) -2*cov(X,Y)))
+}
+# return về alpha cần tìm để tối thiểu rủi ro
+alpha.fn()
+```
+
+### 3. Sử dụng hàm tính alpha vừa build
+
+3.1. Không dùng Bootstrap nên dùng 100 quan sát phân biệt
+
+```{r}
+# sử dụng 100 quan sát nhưng không lặp lại
+alpha.fn(Portfolio,1:100)
+# alpha nên là 0.58 cho X và còn lại đầu tư vào Y
+```
+
+3.2. Sử dụng Bootstrap với R = 100
+
+```{r}
+# khác cách ở trên là chọn 100 ký tự nhưng có thể lặp lại - có hoàn lại (đây chính là bootstrap)
+set.seed(1)
+alpha.fn(Portfolio,sample(100,100,replace=T))
+```
+
+3.3. Sử dụng Bootstrap với R = 1000
+
+```{r}
+# giống cách dùng bootstrap bên trên (có thể lặp lại giá trị) nhưng số lần lấy data (hoàn lại -> có thể trùng lặp) là 1000 lần
+boot(Portfolio,alpha.fn,R=1000)
+```
+
+3.4. Ước lượng các hệ số khi sử dụng Bootstrap
+
+```{r}
+boot.fn=function (data ,index)
+  return(coef(lm(mpg~horsepower,data=data,subset=index)))
+boot.fn(Auto, 1:392)
+# Ước lượng hệ số a0, a1 trong mô hình với 392 quan sát (phân biệt) trong 392 quan sát của Auto với mô hình mpg = a0 + a1*horsepower
+```
+
+```{r}
+boot.fn(Auto, sample(392, 392, replace = TRUE))
+# Ước lượng hệ số a0, a1 trong mô hình với 392 quan sát (có thể trùng nhau) trong 392 quan sát của Auto
+```
+
+```{r}
+# Thực hiện bootstrap 1000 lần 
+boot(Auto,boot.fn,1000)
+```
+
+```{r}
+
+```
+
+```{r}
+
+```

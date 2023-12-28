@@ -1,0 +1,229 @@
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# Lựa chọn tập con:
+
+Best subset selection.
+
+Forward, Backward.
+
+CV\.
+
+# Regsubsets:
+
+Data có k biến =\> Tìm mô hình p biến "phù hợp" nhất. Regsubsets có các
+chỉ số:
+
+1\. RSS -\> MSE = RSS / n
+
+2\. AIC
+
+3\. BIC
+
+4\. $R^2$ hiệu chỉnh
+
+I. Best Subset Selection.
+
+```{r}
+library ( ISLR )
+fix ( Hitters )
+names ( Hitters )
+```
+
+```{r}
+dim ( Hitters )
+# đếm số hàng có giá trị trống 
+sum ( is.na ( Hitters$Salary ) )
+```
+
+```{r}
+# loại bỏ những hàng có dữ liệu Salary bị trống 
+Hitters = na.omit ( Hitters )
+
+# check again the data 
+dim ( Hitters )
+# đếm số hàng có giá trị trống 
+sum ( is.na ( Hitters$Salary ) )
+```
+
+```{r}
+# install.packages("leaps")
+library (leaps)
+regfit.full = regsubsets( Salary~. , Hitters )
+summary ( regfit.full )
+```
+
+```{r}
+regfit.full=regsubsets (Salary~.,data=Hitters ,nvmax=19)
+reg.summary =summary (regfit.full)
+
+names(reg.summary)
+reg.summary$rsq
+```
+
+```{r}
+par(mfrow=c(2,2))
+
+plot(reg.summary$rss, xlab="Number of Variables", ylab="RSS",
+  type="l")
+which.min(reg.summary$rss)
+points(11,reg.summary$rss[11], col= "red",cex=2,pch =20)
+
+plot(reg.summary$adjr2, xlab="Number of Variables",
+  ylab="Adjusted RSq",type="l")
+which.max(reg.summary$adjr2)
+points(11,reg.summary$adjr2[11], col= "red",cex=2,pch =20)
+
+plot(reg.summary$cp ,xlab="Number of Variables ",ylab="Cp",
+  type= 'l')
+which.min(reg.summary$cp)
+points(10,reg.summary$cp [10], col ="red",cex=2,pch =20)
+
+plot(reg.summary$bic ,xlab="Number of Variables ",ylab="BIC",
+type= 'l')
+which.min(reg.summary$bic)
+points(6,reg.summary$bic [6],col="red",cex=2,pch =20)
+```
+
+```{r}
+ plot(regfit.full ,scale="r2")
+ plot(regfit.full ,scale="adjr2")
+ plot(regfit.full ,scale="Cp")
+ plot(regfit.full ,scale="bic")
+```
+
+```{r}
+ coef(regfit.full ,6)
+ # Mô hình 6 biến phù hợp nhất với tiêu chuẩn RSS
+```
+
+Dùng regsubsets thu được mô hình 1 biến phù hợp nhất trong các mô hình 1
+biến; thu được mô hình 2 biến phù hợp nhất trong các mô hình 2 biến; ...
+; thu được mô hình 19 biến phù hợp nhất trong các mô hình 19 biến.
+
+Việc thu được các kết quả đó là dựa trên tiêu chuẩn RSS.
+
+Bằng việc so sánh RSS giữa các mô hình 1 biến, mô hình 1 biến có RSS nhỏ
+nhất là mô hình 1 biến tốt nhất.
+
+Trong 19 mô hình (1 biến, 2 biến, ...) vừa tìm được, mô hình nào là mô
+hình phù hợp nhất? Tùy theo tiêu chuẩn RSS, R2 hiệu chỉnh, Cp, BIC.
+
+Trong 19 mô hình (1 biến, 2 biến, ..., 19 biến) vừa tìm được, mô hình 6
+biến là mô hình phù hợp nhất với tiêu chuẩn BIC.
+
+II\. Forward và Backward.
+
+```{r}
+regfit.fwd=regsubsets (Salary~.,data=Hitters , nvmax=19, method ="forward")
+summary (regfit.fwd)
+regfit.bwd=regsubsets (Salary~.,data=Hitters , nvmax=19, method ="backward")
+summary (regfit.bwd)
+```
+
+```{r}
+coef(regfit.full ,7)
+coef(regfit.fwd ,7)
+coef(regfit.bwd ,7)
+```
+
+III\. Kiểm chứng chéo - CV.
+
+Vì sinh ngẫu nhiên nên kết quả chạy giữa các lần có thể khác nhau.
+
+```{r}
+set.seed(1)
+train=sample(c(TRUE, FALSE), nrow(Hitters), rep=TRUE)
+test=(!train)
+```
+
+```{r}
+regfit.best=regsubsets (Salary~.,data=Hitters[train ,],
+nvmax=19)
+```
+
+```{r}
+test.mat=model.matrix(Salary~.,data=Hitters [test ,])
+```
+
+```{r}
+val.errors =rep(NA ,19) # NA hay gì cũng được (chỉ cần thỏa mãn có 19 phần tử, tương ứng 19 biến)
+for(i in 1:19){
+  coefi=coef(regfit.best ,id=i)
+  # UL hệ số trong mô hình i biến tốt nhất
+  pred=test.mat[,names(coefi)]%*%coefi # %*% là nhân 2 ma trận
+  # dự đoán y_h
+  val.errors[i]=mean(( Hitters$Salary[test]-pred)^2)
+  # MSE = 1 / n * (y - h_h) ^ 2 trong test set
+}
+# Mục đích chính ở đây là: Tính MSE tương ứng với 19 mô hình (trong test set)
+# pred = y_h = a^T * X
+coefi = coef(regfit.best, id = 2)
+coefi
+
+head(test.mat[, names(coefi)])
+```
+
+```{r}
+val.errors # kết quả có thể khác nhau
+```
+
+```{r}
+which.min(val.errors) # có thể kết quả khác nhau
+```
+
+```{r}
+coef(regfit.best ,7)
+# vì which.min(sai số) ra mô hình 7 biến
+# kết quả về biến và hệ số khác so với việc sử dụng data là train set
+
+# nó khác biệt so với việc sử dụng toàn bộ tập dữ liệu (sẽ ra 10 biến giống nhwu sách)
+regfit.best=regsubsets (Salary~.,data=Hitters ,nvmax=19)
+coef(regfit.best ,10)
+```
+
+```{r}
+ predict.regsubsets =function (object , newdata ,id ,...){
++ form=as.formula (object$call [[2]])
++ mat=model.matrix(form ,newdata )
++ coefi=coef(object ,id=id)
++ xvars=names(coefi)
++ mat[,xvars]%*%coefi
+}
+```
+
+```{r}
+regfit.best=regsubsets (Salary~.,data=Hitters ,nvmax=19)
+coef(regfit.best ,10)
+```
+
+```{r}
+predict.regsubsets =function (object , newdata ,id ,...){
++ form=as.formula (object$call [[2]])
++ mat=model.matrix(form ,newdata )
++ coefi=coef(object ,id=id)
++ xvars=names(coefi)
++ mat[,xvars]%*%coefi
+}
+k=10
+set.seed(1)
+folds=sample(1:k,nrow(Hitters), replace=TRUE)
+cv.errors = matrix (NA,k,19, dimnames=list(NULL, paste (1:19)))
+
+for(j in 1:k){
+  best.fit=regsubsets(Salary~.,data=Hitters [folds!=j,],nvmax=19)
+  for(i in 1:19){
+    pred=predict(best.fit ,Hitters [folds == j,], id=i)
+    cv.errors[j,i]= mean( ( Hitters$Salary[ folds==j]-pred)^2)
+  }
+}
+```
+
+```{r}
+
+```
+
+BVN: bài 8 a đến d trang 262 263

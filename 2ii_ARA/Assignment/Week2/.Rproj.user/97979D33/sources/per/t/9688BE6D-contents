@@ -1,0 +1,37 @@
+#ve on lai ve vector va matrix
+
+attach(Auto)  
+#dung de tach bien -> tach duoc mpg ra
+mpg
+Auto$mpg
+#mpg or Auto$mpg sau khi attach cho ra the same ket qua
+
+cor(mpg, weight) 
+#dung de tinh he so tuong quan mau giua cac dai luong
+
+cor.test(mpg, weight) #kiem dinh su tuong quan hay khong
+#Voi muc y nghia alpha = 5%, kiem dinh
+#H0: cor = 0 | H1: cor != 0
+#t la test thong ke (tuy thuoc phan phoi Chuan, Student, Fisher, Khi binh phuong)
+#df la bac tu do = n -2 = 390
+#p-value < 2.2^(-16) < alpha = 5% => bac bo H0: cor = 0 la sai
+#doi thuyet (H1) dong y vs H1 la cor != 0
+#khoang tin cay la 95% thi co cor thuoc khoang (-0.86, -0.79)
+#he so tuong quan mau = cor = -0.83
+
+lm(mpg~weight)
+#viet phuong trinh hoi quy tuyen tinh cua mpg theo weight
+# mpg = -0.0076 * weight + 46.2165
+lm(weight~mpg)
+#viet phuong trinh hoi quy tuyen tinh cua weight theo mpg
+# weight = -90.57 * mpg + 5101.11
+
+summary(lm(mpg~weight))
+#residuals: phan du esinol cua tung mau (xi, yi)
+# duoc bieu dien ket qua cac thong tin cua box plot
+#coefficients: cac he so cua ptrinh hoi quy
+# Uoc luong he so | Sai so chuan cua he so | t value (test value)
+#       Co t value de kiem dinh bai toan H0: b = 0 | H1: b != 0
+#       voi b co trong y = a*x + b
+#       Pr(>|t|) < 2* 10^(-16) < alpha = 5% => Bac bo H0
+#

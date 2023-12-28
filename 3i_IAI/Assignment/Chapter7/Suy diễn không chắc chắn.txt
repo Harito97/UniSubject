@@ -1,0 +1,59 @@
+W5.L2.
+
+Thay vì là 100% khẳng định này thì thay bằng 97% thế này thế kia 
+
+P(B|A) = beta = |B ^ A| / |A|
+xác suất xảy ra B khi A đã xảy ra 
+
+fuzzy logic: logic mờ 
+
+7.1. Tính toán xác suất 
+Xác suất là gì:
+Cách định nghĩa 1: lim n->vocung (ki/_u-i_)
+Cách định nghĩa 2: Coi không gian mẫu là xác định hoàn toàn và các biến cố có xác suất giống nhau: -> Giả thiết Laplace
+P = |A|/|U|
+
+elementary events: biến cố sơ cấp (không chia ra các biến cố khác được nữa)
+certain events: biến cố chắc chắn xảy ra
+impossible events: biến cố k thể xảy ra
+
+sự tương đồng giữa biểu diễn qua logic mệnh đề và logic tập hợp
+
+Biến cố độc lập và biến cố loại trừ nhau là 2 loại biến cố khác nhau.
++ độc lập: tức là có thể xảy ra cùng nhau nhưng không liên quan đến nhau
++ loại trừ: cái này xảy ra thì cái kia không xảy ra 
+
+7.1.1. Xác suất có điều kiện 
+Thống kê: gọi là tỷ số (có số liệu)
+Xác suất: phải đảm bảo tính __ngẫu nhiên__ thì mới gọi là xác suất 
+
+P(A^B) = P(A) * P(B) nếu A và B độc lập 
+
+Lý thuyết Bayes:
+P(A|B) = P(A ^ B) / P(B)
+
+7.2. Nguyên tắc của Max Entropy - đo sự hỗn loạn, đo sự bất định 
+
+Công thức của Max Entropy (eg: cho lý thuyết thông tin)
+
+7.2.2. Max Entropy với ràng buộc không rõ ràng 
+Dùng Lagrange giải bài toán tối ưu giải tích (có thể giảm kích thước hàm - giảm số biến)
+
+7.3. Mục mẫu làm báo cáo GK-CK (tham khảo để hiểu cách viết báo cáo)
+các mục trên phần 7.3 là cơ sở lý thuyết
+mục 7.3 là các phần tiếp sau khi có cơ sở lý thuyết 
+
+7.4. Xây dựng mạng đồ thị Bayesian 
+
+Nhìn nó trực quan hơn 
+
+Tư duy: Đơn định, mệnh đề, sự không chắc chắn - lý thuyết xác suất + entropy + 
+
+
+
+
+
+
+
+
+

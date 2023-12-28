@@ -1,0 +1,12 @@
+Before press 'q'
+Left have: 10
+Right have: 18
+Before press 'q'
+Left have: 6
+Right have: 18
+Before press 'q'
+Left have: 6
+Right have: 18
+Before press 'q'
+Left have: 14
+Right have: 25

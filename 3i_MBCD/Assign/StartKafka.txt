@@ -1,0 +1,34 @@
+On linux:
+sudo systemctl start zookeeper
+sudo systemctl start kafka
+
+On windows:
+cd C:\kafka
+.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+cd C:\kafka
+.\bin\windows\kafka-server-start.bat .\config\server.properties
+
+# Để xóa đi các topic đang có
+bin/kafka-topics.sh --zookeeper localhost:2181 --delete --topic test
+or
+bin\windows\kafka-topics.bat --zookeeper localhost:2181 --delete --topic test
+
+# Chú ý đã setup lại cho Windows để nó tự động xóa đi những file thừa
+# Trên Linux thì nó đã mặc định cho vào thư mục /tmp/kafka rồi nên không cần setup 
+
+# Sửa kafka/config/zookeeper.properties
+# -------------------------------------------
+# the directory where the snapshot is stored.
+# dataDir=/tmp/zookeeper
+dataDir=C:\\Windows\\Temp\\zookeeper
+
+# Sửa kafka/config/server.properties
+# A comma separated list of directories under which to store log files
+# log.dirs=/tmp/kafka-logs
+log.dirs=C:\\Windows\\Temp\\kafka-logs
+
+New problem: 
+    + Có 2 camera cùng quay 1 đối tượng
+    + Xác định đối tượng từ 2 camera 
+    + ReID model
+    

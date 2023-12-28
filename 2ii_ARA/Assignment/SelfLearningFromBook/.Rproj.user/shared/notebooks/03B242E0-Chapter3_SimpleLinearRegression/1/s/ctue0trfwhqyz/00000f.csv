@@ -1,0 +1,21 @@
+"0","lm.fit1 = lm(medv ~ lstat + 0) #co +0 de khong in ra he so = 0"
+"0","lm.fit1"
+"1","
+Call:
+"
+"1",""
+"1","lm(formula = medv ~ lstat + 0)"
+"1",""
+"1","
+
+"
+"1","Coefficients:
+"
+"1","lstat  "
+"1","
+"
+"1","1.122  "
+"1","
+"
+"1","
+"

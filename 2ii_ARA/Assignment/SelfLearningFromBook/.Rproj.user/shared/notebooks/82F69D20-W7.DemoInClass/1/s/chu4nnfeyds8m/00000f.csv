@@ -1,0 +1,2 @@
+"0","regfit.best=regsubsets (Salary~.,data=Hitters[train ,],"
+"0","nvmax=19)"

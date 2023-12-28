@@ -1,0 +1,5 @@
+Tính và trả về chỉ số tf của từ w trong Doc d (d là 1 đối tượng Doc)
+Công thức tính tf(w,d) như sau:
+- Gọi tfw là số lần w xuất hiện trong d (ví dụ tfw = 3)
+- Gọi tfm là số lần 1 từ bất kỳ xuất hiện nhiều nhất trong d (ví dụ tfm = 6)
+- khi đó tf(w,d) = tfw/tfm (ví dụ 3/6 = 0.5)

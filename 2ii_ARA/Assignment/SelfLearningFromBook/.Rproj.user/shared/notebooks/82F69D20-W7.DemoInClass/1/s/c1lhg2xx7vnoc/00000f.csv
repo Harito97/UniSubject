@@ -1,0 +1,10 @@
+"0","for(j in 1:k){"
+"0","  best.fit=regsubsets (Salary~.,data=Hitters [folds!=j,],"
+"0","nvmax=19)"
+"0","  for(i in 1:19){"
+"0","+ pred=predict (best.fit ,Hitters [folds ==j,],id=i)"
+"0","+ cv.errors[j,i]= mean( ( Hitters$Salary[ folds==j]-pred)^2)"
+"0","  }"
+"0","}"
+"2","Error in k : object 'k' not found
+"

@@ -1,0 +1,9 @@
+Lớp mô tả một đối tượng văn bản, lớp này có 1 thuộc tính là wordCount kiểu từ điển
+
+với key là các từ trong văn bản và value là số lần các từ đó xuất hiện trong văn bản
+
+CHÚ Ý: Để cho đơn giản, mỗi từ trong văn bản được phân cách bởi dấu cách, các từ phân biệt hoa thường...
+
+Nói chung 2 từ A và B mà A == B nhận giá trị false là khác nhau.
+Ví dụ từ "anh" và "Anh" là khác nhau
+từ "anh." và "anh" là khác nhau

@@ -1,0 +1,40 @@
+"0","lm.fit = lm(mpg~horsepower, data = Auto, subset = train)"
+"0","#phân tích hồi quy tuyến tính trên tập con của Auto gồm các giá trị tại quan sats thứ i (i thuộc tập train)"
+"0","attach(Auto)"
+"2","The following objects are masked from Auto (pos = 3):
+
+    acceleration, cylinders, displacement, horsepower, mpg,
+    name, origin, weight, year
+
+"
+"2","The following objects are masked from Auto (pos = 4):
+
+    acceleration, cylinders, displacement, horsepower, mpg,
+    name, origin, weight, year
+
+"
+"2","The following objects are masked from Auto (pos = 5):
+
+    acceleration, cylinders, displacement, horsepower, mpg,
+    name, origin, weight, year
+
+"
+"2","The following objects are masked from Auto (pos = 6):
+
+    acceleration, cylinders, displacement, horsepower, mpg,
+    name, origin, weight, year
+
+"
+"2","The following objects are masked from Auto (pos = 7):
+
+    acceleration, cylinders, displacement, horsepower, mpg,
+    name, origin, weight, year
+
+"
+"0","MSE = mean((mpg - predict(lm.fit,Auto))[-train ]^2)"
+"0","#E{(y - y_h)^2} tính trên tập dữ liệu test = Auto \ Auto[train]"
+"0","MSE"
+"1","[1]"
+"1"," 23.26601"
+"1","
+"

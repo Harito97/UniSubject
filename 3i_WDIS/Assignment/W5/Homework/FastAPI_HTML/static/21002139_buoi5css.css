@@ -1,0 +1,41 @@
+* {
+  overflow: auto;
+  margin: 10px;
+}
+
+header {
+  border: 2px solid greenyellow;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px greenyellow;
+  text-align: center;
+  color: #2f856b;
+}
+
+main {
+  display: flex;
+  width: 95%;
+  border: 2px solid #2f856b;
+  border-radius: 10px;
+  padding: 1%;
+  margin: 1%;
+  align-items: center;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}

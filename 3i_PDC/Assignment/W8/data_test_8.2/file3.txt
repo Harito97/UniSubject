@@ -1,0 +1,6 @@
+Hàm thực hiện đọc các file văn bản trong thư mục corpusPath, và xây dựng các đối tượng
+
+Doc tương ứng và đưa vào data
+
+Hàm này được gọi đến trong hàm dựng, do vậy bắt buộc phải viết đúng hàm này, nếu không các hàm khác sẽ không được
+chấm điểm

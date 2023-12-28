@@ -1,0 +1,31 @@
+"0","# Thực hiện bootstrap 1000 lần "
+"0","boot(Auto ,boot.fn ,1000)"
+"1","
+ORDINARY NONPARAMETRIC BOOTSTRAP
+
+"
+"1","
+Call:
+"
+"1","boot(data = Auto, statistic = boot.fn, R = 1000)
+"
+"1","
+
+Bootstrap Statistics :
+"
+"1","   "
+"1","   original"
+"1","        bias  "
+"1","  std. error"
+"1","
+t1*"
+"1"," 39.9358610"
+"1","  0.0421121394"
+"1"," 0.832623914"
+"1","
+t2*"
+"1"," -0.1578447"
+"1"," -0.0005169687"
+"1"," 0.007217566"
+"1","
+"

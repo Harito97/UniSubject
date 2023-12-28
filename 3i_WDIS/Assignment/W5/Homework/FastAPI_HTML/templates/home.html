@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link type="text/css" href="{{ url_for('static', path='../static/21002139_buoi5css.css') }}" rel="stylesheet"> 
+  </head>
+
+  <body>
+    <header>
+      <h1>Here is the data of table {{ data_table }}</h1>
+      <!-- <nav>
+            <button onclick="addRecord()">Add record</button>
+            <button onclick="updateRecord()">Update record</button>
+            <button onclick="deleteRecord()">Delete record</button>
+        </nav> -->
+    </header>
+
+    <main>
+      <table>
+        <tr>
+          {% for column_name in columns_name %}
+          <th>{{ column_name[0] }}</th>
+          {% endfor %}
+        </tr>
+
+        {% for record in records %}
+        <tr>
+          {% for data in record %}
+          <td>{{ data }}</td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </table>
+    </main>
+  </body>
+</html>

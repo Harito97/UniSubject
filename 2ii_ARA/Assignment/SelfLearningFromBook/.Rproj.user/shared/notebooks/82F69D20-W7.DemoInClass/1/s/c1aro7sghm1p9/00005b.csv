@@ -1,0 +1,3 @@
+"0",""
+"0","plot(reg.summary$adjr2, xlab=""Number of Variables"","
+"0","  ylab=""Adjusted RSq"",type=""l"")"

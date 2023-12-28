@@ -1,0 +1,22 @@
+"0","only = lm(mpg ~ 1, data = mtcars)"
+"0","all = lm(mpg ~ ., data = mtcars) "
+"0","step(only, all, direction = ""forward"", trace = 0)"
+"1","
+Call:
+"
+"1",""
+"1","lm(formula = mpg ~ 1, data = mtcars)"
+"1",""
+"1","
+
+"
+"1","Coefficients:
+"
+"1","(Intercept)  "
+"1","
+"
+"1","      20.09  "
+"1","
+"
+"1","
+"

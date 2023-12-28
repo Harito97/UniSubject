@@ -1,0 +1,6 @@
+"0","which.max(reg.summary$adjr2)"
+"1","[1]"
+"1"," 11"
+"1","
+"
+"0","points(11,reg.summary$adjr2[11],col=""red"",cex=2,pch=20)"

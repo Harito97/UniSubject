@@ -1,0 +1,18 @@
+TX: 20%     7 bai thuc hanh va di hoc day du -> 7 diem chuyen can
+GK: 20%     thuyết trình giữa kỳ -> thầy Dũng đảm đương
+CK: 60%     cuối kỳ - báo cáo sản phẩm cuối kỳ -> thầy Dũng đảm đương
+
+Về TX:
+    -   đi học muộn quá 15p sẽ bị tính là nghỉ không phép -> chuyên cần = 4
+    -   nghỉ học có phép quá 3 buổi -> tạch 
+
+    -   có tinh thần xây dựng trên lớp -> +0.5 điểm 
+    -   hỏi ngu -> +0.5 điểm
+    -   bắt lỗi thằng lên bảng -> +0.5 điểm
+    -   (xung phong) thuyết trình -> +0.5 điểm
+
+    -   Thái độ:
+        +   Sống thật (trong giờ học không dùng fb, ...)
+        +   Xin phép khi đi ra ngoài (Chào thầy cô, xong rồi xin phép vào lớp)
+        +   Nghiêm túc (thuyết trình hài hước)
+        +   Đi học đúng giờ 

@@ -1,0 +1,38 @@
+[
+    {
+        "TENDA": "San pham X",
+        "MADA": 1,
+        "DDIEM_DA": "Vũng Tàu",
+        "PHONG": 5
+    },
+    {
+        "TENDA": "San pham Y",
+        "MADA": 2,
+        "DDIEM_DA": "Nha Trang",
+        "PHONG": 5
+    },
+    {
+        "TENDA": "San pham Z",
+        "MADA": 3,
+        "DDIEM_DA": "TP HCM",
+        "PHONG": 5
+    },
+    {
+        "TENDA": "Tin hoc hoa",
+        "MADA": 10,
+        "DDIEM_DA": "Hà Nội",
+        "PHONG": 4
+    },
+    {
+        "TENDA": "Cap quang",
+        "MADA": 20,
+        "DDIEM_DA": "TP HCM",
+        "PHONG": 1
+    },
+    {
+        "TENDA": "Dao tao",
+        "MADA": 30,
+        "DDIEM_DA": "Hà Nội",
+        "PHONG": 4
+    }
+]

@@ -1,0 +1,1 @@
+"0","plot(cv.error.10, type = ""l"", ylim = c(18, 25))"
