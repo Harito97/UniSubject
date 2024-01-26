@@ -1,0 +1,11 @@
+Bài 1:
+1. grep -E '^0$|^[1-9][0-9]*' dataset.txt 
+2. grep -E '^0$|^5$|^[1-9][0-9]*[0|5]$' dataset.txt
+3. grep -E '^[01]{4}[0]{2}$' dataset.txt
+4. grep -E '^T' dataset.txt | grep -E '(This is an exercise).*\1'
+Bài 2
+1. ls /etc | grep -E '[a]{2}' > output1.txt
+2. ls /etc | grep -E '^b' | grep -E -v '[c]' > output2.txt
+3. grep -E -i '^jiayant' name_list.txt > out_jiayant.txt
+4. grep -E '^024-[0-9]*' phone_list.txt > out_phonehanoi.txt
+5. grep -E '@[a-z0-9]*.com' data_list.txt > mail_list.txt

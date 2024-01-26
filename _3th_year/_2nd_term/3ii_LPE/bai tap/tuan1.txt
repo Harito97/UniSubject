@@ -1,0 +1,2 @@
+1. grep bash /etc/passwd | cut -d ":" -f1
+2. grep bash /etc/passwd | cut -d ":" -f1 | wc -w

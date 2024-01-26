@@ -1,0 +1,16 @@
+---
+title: "W1.Chapter 2.Probability and Statistics Review"
+author: "Phạm Ngọc Hải"
+date: "2024-01-23"
+output:
+  pdf_document:
+    latex_engine: xelatex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(encoding = 'UTF-8')
+```
+
+# Chapter 2. Probility and Statistics Review 
+
