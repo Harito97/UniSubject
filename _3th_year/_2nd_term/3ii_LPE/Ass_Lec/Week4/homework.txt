@@ -1,0 +1,89 @@
+Bai 1
+1. Tim cac so tu nhien
+1
+5
+3
+2769
+10
+2
+4
+8
+0
+100
+1000
+1555
+20
+010
+11000
+111100
+111110
+100000
+1000000
+101000
+2. Tim cac so tu nhien chia het cho 5
+5
+10
+0
+100
+1000
+1555
+20
+010
+11000
+111100
+111110
+100000
+1000000
+101000
+3. Tim cac so nhi phan do dai 6 va chia het cho 4
+Note: end = 00 or 100
+111100
+100000
+101000
+4. Tap cac dong bat dau = "T" va chua it nhat 2 xau "This is an exercise"
+This is an exerciseThis is an exercise. 
+T check This is an exercise about regular expression. This is an exercise in Linux.
+This is an exercise about regular expression. This is an exercise in Linux.
+Bai 2
+1.
+alsa
+apparmor
+apparmor.d
+arch-release
+arptables.conf
+avahi
+bash.bash_logout
+bash.bashrc
+ca-certificates
+flatpak
+ganesha
+ImageMagick-7
+java-openjdk
+locale.gen.pacnew
+mailcap
+NetworkManager
+pacman.conf
+pacman.conf.t2.bkp
+pacman.d
+passwd.pacnew
+vdpau_wrapper.cfg
+wpa_supplicant
+2.
+bash.bash_logout
+binfmt.d
+bluetooth
+brlapi.key
+3.
+Jiayant Nicola
+jiayant Dinian
+jIayant Bin
+JIAYANT JACK
+4.
+024-3456789
+024-3561237
+024-3456782
+5.
+jiayant@gmail.com
+Adam@yahoo.in
+minhanh2000@gmail.com
+Jay_7@gmail.in
